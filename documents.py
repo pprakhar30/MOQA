@@ -76,9 +76,9 @@ class Sentence:
 	def __init__(self, itemId, Review, V, WordIDMap, ReviewObj):
 
 		self.itemId 	= itemId
-		self.sent 		= Review
-		self.rObj 		= ReviewObj
-		self.Sent 		= [WordIDMap[stemmer.stem(word)] for word in tokenizer.tokenize(Review) if stemmer.stem(word) in WordIDMap]
+		self.sent 	= Review
+		self.rObj 	= ReviewObj
+		self.Sent 	= [WordIDMap[stemmer.stem(word)] for word in tokenizer.tokenize(Review) if stemmer.stem(word) in WordIDMap]
 		self.sFeature 	= {}
 				
 	def create_SFeature(self):
