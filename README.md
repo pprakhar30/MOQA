@@ -37,7 +37,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 ---------------------------------------------------------------------------------
 <img src="http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1012426212" width="200" height="200">
 
-**Product**: BLACK+DECKER BDCS80I 8V MAX Impact Screwdriver (amazon.com/dp/B00FFZQ0W2)
+**Product**: BLACK+DECKER BDCS80I 8V MAX Impact Screwdriver (www.amazon.com/dp/B00FFZQ0W2)
 
 **Question**: What is the torque rating? Most impact drivers are rated in in lbs, anyone know what this is rated at? Thanks!
 
@@ -46,6 +46,28 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 **Actual Answer**: 125 inch pounds, which is 10.4 foot pounds. The hammer kicks in if the torque need is very high. Once a bolt or screw is loose, it quits hammering and revs up to over 2000 rpm. Sinks long drywall screws in about 2-3 seconds, no sweat. Will even sink 3 inch stair lift lag bolts. Tears down a 32 year old clothes dryer real fast.
 
 ----------------------------------------------------------------------------------------
+<img src="https://images-na.ssl-images-amazon.com/images/I/51Souz9ZD9L._SL500_AC_SS350_.jpg" width="200" height="200">
+
+**Product**: Sengoku Portable Kerosene Heater (www.amazon.com/dp/B000KKO33A)
+
+**Question**: can heater be used for cooking
+
+**Most Relevant Review**: After languishing in the garage untended the batteries in the quick-start had corroded but it is easy to light with a match and we ran this to keep warm, boil water, warm some food and even cook a beef stew from scratch ingredients from our failing fridge (using the ceramic insert from a slow cooker) after removing the top safety cage
+
+**Actual Answer**: No. absolutely not. this is a space heater to warm a small room in a house.
+
+----------------------------------------------------------------------------------------------
+<img src="http://ecx.images-amazon.com/images/I/51xQCcjjMFL.jpg" width="200" height="200">
+
+**Product**: 3M Interior Transparent Weather Sealing Tape (www.amazon.com/dp/B0000CBIFF)
+
+**Question**: What is the best method for removing this from factory painted metal window trim and vinyl windows? I do not want to be able to tell it was there. You see, I snuck it past my husband who would refuse to risk tape on windows..:)
+
+**Most Relevant Review**: When removing tape, remove very slowly and evenly if applied to acrylic latex painted surfaces
+
+**Actual Answer**: It's less sticky than packing tape so shouldn't be a problem, unless the paint is cracking and peeling already. There should be no adhesive residue on the window. If there is and you don't have something like GooGone, I've heard peanut butter works. But be careful of putting anything oily on matte finishes.
+
+--------------------------------------------------------------------------------------------------
 
 [1]:https://arxiv.org/pdf/1512.06863.pdf
 [2]:https://github.com/tensorflow/tensorflow
