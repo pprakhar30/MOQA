@@ -48,6 +48,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 ## Results
 
 | Dataset/Model             | Model A   | Model B | Model C|
+|---                        |---        |---      |---     |
 |Musical Instruments        | 0.657     | 0.678   | 0.729  |
 |Tools and Home Improvement | 0.721     | 0.745   | 0.792  |
 
@@ -57,6 +58,8 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
     * Tokeninzing using nltk RegexpTokenizer.
     * Filtering out the stop words. 
     * Stemming the words used using Snowball Stemmer
+
+The performance metrics used is AUC (the model's ability to assign the highest possible rank to the correct answer).
 
 
 ##  Examples of opinions recommended by MOQA
