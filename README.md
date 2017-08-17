@@ -23,14 +23,14 @@ To train the model and save the results:
 python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambda MostRelevant.txt Top10Review.txt
 
 ```
-* **Args**
-- `qa_file.json.gz`: name of file containing the community Q/A data in the format specified in [this link][4]
-- `reviews_file.json.gz`: name of file containing the community Review data in the format specified in [this link][5]
-- `min_reviews`: Minimum number of reviews for an item to be considered. By default set to 1.
-- `num_iter`: Number of iterations you want to train the model. By default the number of iterations is 100 as told by author in [paper][1]
-- `lambda`: The regularization parameter. By default it is set to 0 i.e no regualarization.
-- `MostRelevant.txt`: name of the file in which the most relevant reviews corresponding to the queries in the test dataset is stored.
-- `Top10Review.txt`: name of the file in which the 10 most relevant reviews corresponding to the queries in the test dataset is stored.
+- **Args**
+     * `qa_file.json.gz`: name of file containing the community Q/A data in the format specified in [this link][4]
+     * `reviews_file.json.gz`: name of file containing the community Review data in the format specified in [this link][5]
+     * `min_reviews`: Minimum number of reviews for an item to be considered. By default set to 1.
+     * `num_iter`: Number of iterations you want to train the model. By default the number of iterations is 100 as told by author in [paper][1]
+     * `lambda`: The regularization parameter. By default it is set to 0 i.e no regualarization.
+     * `MostRelevant.txt`: name of the file in which the most relevant reviews corresponding to the queries in the test dataset is stored.
+     * `Top10Review.txt`: name of the file in which the 10 most relevant reviews corresponding to the queries in the test dataset is stored.
 
 ## Implementation Details
 
@@ -103,8 +103,8 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 
 **Top Most Relevant Reviews**:
 
--I still don't know how I will solve the  wind noise issue when recording ambient sound (microphone capsules facing out) since the windscreen will only cover the microphones in the XY pattern position
--Buyers should bear in mind that the unit records ambient sounds (e.g., audience and any other background noise), so if you want a more pure sound, you should record directly to a computer through a mixer or other interface to instruments, microphones, etc.
+- I still don't know how I will solve the  wind noise issue when recording ambient sound (microphone capsules facing out) since the windscreen will only cover the microphones in the XY pattern position
+- Buyers should bear in mind that the unit records ambient sounds (e.g., audience and any other background noise), so if you want a more pure sound, you should record directly to a computer through a mixer or other interface to instruments, microphones, etc.
 
 **Actual Answer**: No, I wouldn't wear it, definitely will produce handling noise even with the headset or lav as the mic cable brushes your clothing while changing positions. Look into an inexpensive boundary mic from Radio Shack or other source, set it on the ground near you. It has a hemispherical pickup pattern, they're commonly used for conference table meetings because of this.
 
