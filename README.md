@@ -13,8 +13,8 @@ This is an experimental tensorflow implementation of automatically answering use
 
 - The Q/A community data for training the model can be downloaded from [this link][4].
 - The community review data for training the model can be downloaded from [this link][5]
-- The results presented below our from the model trained on **Tools and Home Improvement** and **Musical Instruments** dataset.
-- Save the both the Q/A and review data in the directory from where you want to run the script.
+- The results presented below are from the model trained on **Tools and Home Improvement** and **Musical Instruments** dataset.
+- Save both the Q/A and review data in the directory from where you want to run the script.
 
 ## Usage
 
