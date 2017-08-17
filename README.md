@@ -52,7 +52,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 |Musical Instruments        | 0.657     | 0.678   | 0.729  |
 |Tools and Home Improvement | 0.721     | 0.745   | 0.792  |
 
-- `Model A`: It is the simple model as described in [paper][1] (except the training is done in batches of items which helps in vectorizing the loss function)
+- `Model A`: It is the model as described in [paper][1] (except the training is done in batches of items which helps in vectorizing the loss function)
 - `Model B`: In this model we use binary mask to represent question, answer and review rather than feature vector to learn bilinear embeddings.
 - `Model C`: This model extends `Model B` by doing some preprocessing on the Q/A and reviews. 
     * Tokeninzing using nltk RegexpTokenizer.
