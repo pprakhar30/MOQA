@@ -45,7 +45,9 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 
 **Actual Answer**: 125 inch pounds, which is 10.4 foot pounds. The hammer kicks in if the torque need is very high. Once a bolt or screw is loose, it quits hammering and revs up to over 2000 rpm. Sinks long drywall screws in about 2-3 seconds, no sweat. Will even sink 3 inch stair lift lag bolts. Tears down a 32 year old clothes dryer real fast.
 
-[1]:McAuley, Julian, and Alex Yang. "Addressing complex and subjective product-related queries with customer reviews." Proceedings of the 25th International Conference on World Wide Web. International World Wide Web Conferences Steering Committee, 2016.(https://arxiv.org/pdf/1512.06863.pdf)
+----------------------------------------------------------------------------------------
+
+[1]:https://arxiv.org/pdf/1512.06863.pdf
 [2]:https://github.com/tensorflow/tensorflow
 [3]:http://www.nltk.org/
 [4]:http://jmcauley.ucsd.edu/data/amazon/qa/
