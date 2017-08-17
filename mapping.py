@@ -19,7 +19,7 @@ class Mapping:
 		self.QAfile 		= QAfile
 		self.ReviewFile 	= ReviewFile
 		self.minReview		= minReview
-		self.V 				= 5000
+		self.V 			= 5000
 		self.Vocublary  	= defaultdict(int)
 		self.WordIDMap  	= {}
 		self.RWordIDMap  	= {}
@@ -34,14 +34,14 @@ class Mapping:
 		print "Reading Question Answer"
 		
 		ItemsToMaybeKeep 	= {}
-		qa 					= gzip.open(self.QAfile, 'r')
+		qa 			= gzip.open(self.QAfile, 'r')
 		
 		for l in qa:
 			
 			qajson 		= eval(l)
 			item 		= qajson['asin']
 			
-			question    = tokenizer.tokenize(qajson['question'])
+			question    	= tokenizer.tokenize(qajson['question'])
 			answer 		= tokenizer.tokenize(qajson['answer'])
 
 			for word in question:
@@ -86,7 +86,7 @@ class Mapping:
 			if value >= self.minReview:
 				self.ItemIDMap[key] 	= count
 				self.RItemIDMap[count] 	= key
-				count 					= count + 1
+				count 			= count + 1
 
 		temp_vocab = sorted(self.Vocublary.items(), key = operator.itemgetter(1))
 		
@@ -95,14 +95,14 @@ class Mapping:
 			temp_vocab = temp_vocab[len(temp_vocab)-5000:]
 		
 		self.Vocublary 	= dict(temp_vocab)
-		self.V 			= len(self.Vocublary)
-		count 			= 0
+		self.V 		= len(self.Vocublary)
+		count 		= 0
 		
 		for (key,value) in self.Vocublary.items():
 			
 			self.WordIDMap[key] 	= count
 			self.RWordIDMap[count] 	= key
-			count 					= count + 1
+			count 			= count + 1
 
 		X = sorted(self.Vocublary.items(), key = operator.itemgetter(1))
 		
