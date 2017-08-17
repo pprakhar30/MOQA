@@ -111,7 +111,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 -----------------------------------------------------------------------------------------------------------------
 ## TODO
 
-- Train the model per question rather than per item as described in [paper][1]
+- Train the model using all the items rather than using batches of item as described in [paper][1]
 - Model ambiguity by including multiple answers to a question as decribed in [paper][6]
 
 ## References
