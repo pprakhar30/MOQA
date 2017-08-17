@@ -24,14 +24,13 @@ def check_sent(sent, WordIDMap):
 	
 	if len(x) > 0:
 		return True
-	
 	else:
 		return False
 
 
 def normalize(feature):
 	
-	L 		= feature.values()
+	L 	= feature.values()
 	norm 	= np.sqrt(np.sum(np.power(L, 2)))
 				
 	for k, v  in feature.items():
