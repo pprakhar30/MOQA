@@ -21,7 +21,7 @@ class Model:
 
 		Model Parameters
 		-----------------
-		theta: parameter corresponding to pairwise similarity
+		theta  : parameter corresponding to pairwise similarity
 		RelvPar: parameter corresponding to term to term Relevance of question and review
 		A: parameter corresponding to the bilinear term, projects question to 'k' dimensional space
 		B, Y: parameter corresponding to the bilinear term, projects review to 'k' dimensional space
