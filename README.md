@@ -34,7 +34,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 
 ## Implementation Details
 
-- The model was trained on R4 High-Memory Large amazon instance.
+- The model was trained on R4 High-Memory Large amazon ec2 instance.
 - The model was trained for 100 epochs.
 - The model was trained using Adam Optimizer rather than lbfgs-b optimizer as used in the [paper][1].
 - The training is done in batches of items.
