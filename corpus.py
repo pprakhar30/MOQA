@@ -16,11 +16,11 @@ class Corpus:
 	def __init__(self, QAFile, ReviewFile, minReview):
 
 		self.Map 				= Mapping(QAFile, ReviewFile, minReview)
-		self.QAnswers  			= []
-		self.Sentences 			= []
-		self.QPerItem  			= []
-		self.SPerItem  			= []
-		self.PairWiseFeature 	= {}
+		self.QAnswers  				= []
+		self.Sentences 				= []
+		self.QPerItem  				= []
+		self.SPerItem  				= []
+		self.PairWiseFeature 			= {}
 		self.Avgdl 				= defaultdict(float)
 		
 		self.Map.create_mappings()
@@ -75,7 +75,7 @@ class Corpus:
 
 			if l['asin'] in self.Map.ItemIDMap:
 				itemID 		= self.Map.ItemIDMap[l['asin']]
-				reviewText  = l['reviewText']
+				reviewText  	= l['reviewText']
 				obj    		= ReviewDoc(itemID, reviewText, self.Sentences, self.SPerItem, self.Map.V, self.Map.WordIDMap)
 		
 		del review
@@ -87,7 +87,7 @@ class Corpus:
 		print "Creating Pairwise Feature\n"
 		k1 			= 1.2
 		b  			= 0.75
-		json_dict 	= {}
+		json_dict 		= {}
 		
 		for itemID in range(len(self.Map.ItemIDMap)):
 			IDF,TF,avgdl 		= self.helper(itemID)
