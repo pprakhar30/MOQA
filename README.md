@@ -36,7 +36,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 ##  Examples of opinions recommended by MOQA
 
 ---------------------------------------------------------------------------------
-![Item 1][Item1]
+<img src="http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1012426212" width="200" height="200">
 **Product**: BLACK+DECKER BDCS80I 8V MAX Impact Screwdriver (amazon.com/dp/B00FFZQ0W2)
 
 **Question**: What is the torque rating? Most impact drivers are rated in in lbs, anyone know what this is rated at? Thanks!
@@ -52,4 +52,3 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 [3]:http://www.nltk.org/
 [4]:http://jmcauley.ucsd.edu/data/amazon/qa/
 [5]:http://jmcauley.ucsd.edu/data/amazon/
-[Item1]:http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1012426212
