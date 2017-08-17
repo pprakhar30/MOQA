@@ -10,10 +10,10 @@ def main():
 	QAfile 	   		= sys.argv[1]
 	ReviewFile 		= sys.argv[2]
 	minReview  		= int(sys.argv[3])
-	k		   		= int(sys.argv[4])
+	k		   	= int(sys.argv[4])
 	numiter	   		= int(sys.argv[5])
 	Lambda			= float(sys.argv[6])
-	predictionsOut 	= sys.argv[7]
+	predictionsOut 		= sys.argv[7]
 	rankingOut 		= sys.argv[8]
 	
 	corpus = Corpus(QAfile, ReviewFile, minReview)
