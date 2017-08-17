@@ -25,24 +25,29 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 
 ```
 * **Args**
-- qa_file.json.gz: name of file containing the community Q/A data in the format specified in [this link][4]
-- reviews_file.json.gz: name of file containing the community Review data in the format specified in [this link][5]
-- min_reviews: Minimum number of reviews for an item to be considered. By default set to 1.
-- num_iter: Number of iterations you want to train the model. By default the number of iterations is 100 as told by author in [paper][1]
-- lambda: The regularization parameter. By default it is set to 0 i.e no regualarization.
-- MostRelevant.txt: name of the file in which the most relevant reviews corresponding to the queries in the test dataset is stored.
-- Top10Review.txt: name of the file in which the 10 most relevant reviews corresponding to the queries in the test dataset is stored.
+- `qa_file.json.gz`: name of file containing the community Q/A data in the format specified in [this link][4]
+- `reviews_file.json.gz`: name of file containing the community Review data in the format specified in [this link][5]
+- `min_reviews`: Minimum number of reviews for an item to be considered. By default set to 1.
+- `num_iter`: Number of iterations you want to train the model. By default the number of iterations is 100 as told by author in [paper][1]
+- `lambda`: The regularization parameter. By default it is set to 0 i.e no regualarization.
+- `MostRelevant.txt`: name of the file in which the most relevant reviews corresponding to the queries in the test dataset is stored.
+- `Top10Review.txt`: name of the file in which the 10 most relevant reviews corresponding to the queries in the test dataset is stored.
 
 ##  Examples of opinions recommended by MOQA
 
 ---------------------------------------------------------------------------------
+![Item 1][Item1]
 **Product**: BLACK+DECKER BDCS80I 8V MAX Impact Screwdriver (amazon.com/dp/B00FFZQ0W2)
+
 **Question**: What is the torque rating? Most impact drivers are rated in in lbs, anyone know what this is rated at? Thanks!
 
-**Most Relevant Review**: 
+**Most Relevant Review**: 125 inch lbs of torque, way more than most battery powered "screwdrivers" Glad to report that the impacts also work in reverse so helpful to remove screws as well
+
+**Actual Answer**: 125 inch pounds, which is 10.4 foot pounds. The hammer kicks in if the torque need is very high. Once a bolt or screw is loose, it quits hammering and revs up to over 2000 rpm. Sinks long drywall screws in about 2-3 seconds, no sweat. Will even sink 3 inch stair lift lag bolts. Tears down a 32 year old clothes dryer real fast.
 
 [1]:McAuley, Julian, and Alex Yang. "Addressing complex and subjective product-related queries with customer reviews." Proceedings of the 25th International Conference on World Wide Web. International World Wide Web Conferences Steering Committee, 2016.(https://arxiv.org/pdf/1512.06863.pdf)
 [2]:https://github.com/tensorflow/tensorflow
 [3]:http://www.nltk.org/
 [4]:http://jmcauley.ucsd.edu/data/amazon/qa/
 [5]:http://jmcauley.ucsd.edu/data/amazon/
+[Item1]:http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1012426212
