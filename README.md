@@ -39,10 +39,10 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 - The model was trained using Adam Optimizer rather than lbfgs-b optimizer as used in the [paper][1].
 - The training is done in batches of items.
 - The results presented here do not use any regularization as the number of intsances to train >> the number of features
-- The reviews and Q/A fed to the model for training is pre-processed:
-      * Tokeninzing using nltk RegexpTokenizer.
-      * Filtering out the stop words. 
-      * Stemming the words used using Snowball Stemmer
+- The reviews and Q/A fed to the model for training is pre-processed
+    * Tokeninzing using nltk RegexpTokenizer.
+    * Filtering out the stop words. 
+    * Stemming the words used using Snowball Stemmer
  - Used Binary Mask while finding low rank bilinear embeddings rather than the feature vector as used in [paper][1].
 
 ##  Examples of opinions recommended by MOQA
