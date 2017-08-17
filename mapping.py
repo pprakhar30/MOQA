@@ -80,7 +80,7 @@ class Mapping:
 		del review
 		print "Read Reviews\n"
 
-		count = 0
+		count 	= 0
 		
 		for (key,value) in ItemsToMaybeKeep.items():
 			if value >= self.minReview:
