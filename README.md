@@ -44,6 +44,20 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
     * Filtering out the stop words. 
     * Stemming the words used using Snowball Stemmer
  - Used Binary Mask while finding low rank bilinear embeddings rather than the feature vector as used in [paper][1].
+ 
+## Results
+
+| Dataset/Model             | Model A   | Model B | Model C|
+|Musical Instruments        | 0.657     | 0.678   | 0.729  |
+|Tools and Home Improvement | 0.721     | 0.745   | 0.792  |
+
+- `Model A`: It is the simple model as described in [paper][1]
+- `Model B`: In this model we use binary mask to represent question, answer and review rather than feature vector to learn bilinear embeddings.
+- `Model C`: This model extends `Model B` by doing some preprocessing on the Q/A and reviews. 
+    * Tokeninzing using nltk RegexpTokenizer.
+    * Filtering out the stop words. 
+    * Stemming the words used using Snowball Stemmer
+
 
 ##  Examples of opinions recommended by MOQA
 
