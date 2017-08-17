@@ -13,8 +13,7 @@ This is an experimental tensorflow implementation of automatically answering use
 
 - The Q/A community data for training the model can be downloaded from [this link][4].
 - The community review data for training the model can be downloaded from [this link][5]
-- The results presented below our from the model trained on **Tools and Home Improvement** and **
-Musical Instruments** dataset.
+- The results presented below our from the model trained on **Tools and Home Improvement** and **Musical Instruments** dataset.
 - Save the both the Q/A and review data in the directory from where you want to run the script.
 
 ## Usage
@@ -37,6 +36,7 @@ python main.py qa_file.json.gz reviews_file.json.gz min_reviews k num_iter lambd
 
 ---------------------------------------------------------------------------------
 <img src="http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1012426212" width="200" height="200">
+
 **Product**: BLACK+DECKER BDCS80I 8V MAX Impact Screwdriver (amazon.com/dp/B00FFZQ0W2)
 
 **Question**: What is the torque rating? Most impact drivers are rated in in lbs, anyone know what this is rated at? Thanks!
