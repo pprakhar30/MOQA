@@ -55,22 +55,22 @@ class Model:
 
 		self.PairwiseDim		= 3
 		self.rankDim			= k
-		self.V 					= corpus.Map.V
-		self.Na 				= 11
-		self.Items 				= len(corpus.Map.ItemIDMap)
+		self.V 				= corpus.Map.V
+		self.Na 			= 11
+		self.Items 			= len(corpus.Map.ItemIDMap)
 		self.numIter 			= numIter
 		self.Lambda 			= Lambda
 		self.corpus 			= corpus
-		self.valid 				= 0.8
+		self.valid 			= 0.8
 		self.valid_test 		= 0.5
-		self.theta 				= None
+		self.theta 			= None
 		self.RelvPar 			= None
-		self.A 					= None
-		self.B 					= None
+		self.A 				= None
+		self.B 				= None
 		self.PredPar 			= None
-		self.X 					= None
-		self.Y 					= None
-		self.loss 				= None
+		self.X 				= None
+		self.Y 				= None
+		self.loss 			= None
 		self.trainQPerItem 		= []
 		self.trainQ 			= []
 		self.validTestQ 		= []
@@ -79,7 +79,7 @@ class Model:
 		self.Pairwise 			= []
 		self.Question 			= []
 		self.Answer 			= []
-		self.Review				= []
+		self.Review			= []
 		self.TermtoTermR 		= []
 		self.TermtoTermP 		= []
 		self.Question_I			= []
@@ -152,7 +152,7 @@ class Model:
 
 		indices = []
 		values  = []
-		Y 		= self.corpus.SPerItem[item]
+		Y 	= self.corpus.SPerItem[item]
 
 		if answer_list is None:
 			for i in range(len(Y)):
@@ -194,7 +194,7 @@ class Model:
 	
 	def create_dense_pairwise(self, item, qId):
 
-		Y 			= self.corpus.SPerItem[item]
+		Y 		= self.corpus.SPerItem[item]
 		Pairwise 	= np.zeros((1, len(Y), self.PairwiseDim), dtype = np.float64)
 		
 		for j in range(len(Y)):
@@ -215,11 +215,11 @@ class Model:
 			Question 	= self.create_sparse_one(qFeature = question)
 			Answer 		= self.create_sparse_one(answer_list = answer_list) 
 			Review 		= self.Review[item]
-			TermtoTermR = self.create_sparse_two(item, qFeature = question)
-			TermtoTermP = self.create_sparse_two(item, answer_list = answer_list)
+			TermtoTermR 	= self.create_sparse_two(item, qFeature = question)
+			TermtoTermP 	= self.create_sparse_two(item, answer_list = answer_list)
 
-			Question_I  = (Question[0], Question[1] if Question[1].size == 1 and Question[1][0] == 0 else np.full((Question[1].size), 1.0/np.sqrt(Question[1].size)), Question[2])
-			Answer_I    = (Answer[0], Answer[1] if Answer[1].size == 1 and Answer[1][0] == 0 else np.full((Answer[1].size), 1.0/np.sqrt(Answer[1].size)), Answer[2])
+			Question_I  	= (Question[0], Question[1] if Question[1].size == 1 and Question[1][0] == 0 else np.full((Question[1].size), 1.0/np.sqrt(Question[1].size)), Question[2])
+			Answer_I    	= (Answer[0], Answer[1] if Answer[1].size == 1 and Answer[1][0] == 0 else np.full((Answer[1].size), 1.0/np.sqrt(Answer[1].size)), Answer[2])
 			Review_I 	= (Review[0], np.full((Review[1].size), 1.0/np.sqrt(Review[1].size)), Review[2])
 			
 			self.validTestM.append((Pairwise, Question, Answer, Review, TermtoTermR, TermtoTermP, Question_I, Answer_I, Review_I))
@@ -228,7 +228,7 @@ class Model:
 	def create_training_data(self):
 
 		for i in range(self.Items):
-			X 		= self.corpus.QPerItem[i]
+			X = self.corpus.QPerItem[i]
 			
 			for j in range(len(X)):
 				if j < int(ceil(self.valid* len(X))):
@@ -265,28 +265,28 @@ class Model:
 			'Calculating Sparse Question Features'
 			indices = []
 			values 	= []
-			X 		= self.trainQPerItem[i]
+			X 	= self.trainQPerItem[i]
 			
 			for j in range(int(len(X))):
 				for k, count in sorted(self.corpus.QAnswers[X[j]].qFeature.items()):
 					indices.append([j,k])
 					values.append(count)
 
-			shape 				= [len(X), self.V]
+			shape 			= [len(X), self.V]
 			self.Question[i] 	= (np.array(indices), np.array(values), np.array(shape))
-			self.Question_I[i]  = (np.array(indices), np.full((len(values)), 1.0/np.sqrt(len(values))), np.array(shape))
+			self.Question_I[i]  	= (np.array(indices), np.full((len(values)), 1.0/np.sqrt(len(values))), np.array(shape))
 						
 			'Calculating Sparse Answer and Sparse TermtoTermP features'
 			indices1 	= []
 			values1 	= []
 			indices2 	= []
 			values2 	= []
-			X 			= self.trainQPerItem[i]
-			Y 			= self.corpus.SPerItem[i]
+			X 		= self.trainQPerItem[i]
+			Y 		= self.corpus.SPerItem[i]
 			
 			for j in range(len(X)):
 				for k in range(self.Na):
-					if k==0:
+					if k == 0:
 						aFeature = self.corpus.QAnswers[X[j]].aFeature
 					
 					else:
@@ -310,48 +310,48 @@ class Model:
 								values2.append(c1 * sFeature[v1])
 						
 			
-			shape1 				= [len(X), self.Na, self.V]
-			shape2				= [len(X), self.Na, len(Y), self.V]
+			shape1 			= [len(X), self.Na, self.V]
+			shape2			= [len(X), self.Na, len(Y), self.V]
 			self.Answer[i] 		= (np.array(indices1), np.array(values1), np.array(shape1))
-			self.Answer_I[i]    = (np.array(indices1), np.full((len(values1)), 1.0/np.sqrt(len(values1))), np.array(shape1))
-			self.TermtoTermP[i] = (np.array(indices2), np.array(values2), np.array(shape2))
+			self.Answer_I[i]    	= (np.array(indices1), np.full((len(values1)), 1.0/np.sqrt(len(values1))), np.array(shape1))
+			self.TermtoTermP[i] 	= (np.array(indices2), np.array(values2), np.array(shape2))
 		
 		
 			'Calculating Sparse Review Features at Sentence Level'
 			indices = []
 			values 	= []
-			X 		= self.corpus.SPerItem[i]
+			X 	= self.corpus.SPerItem[i]
 			
 			for j in range(len(X)):
 				for k, count in sorted(self.corpus.Sentences[X[j]].sFeature.items()):
 					indices.append([j,k])
 					values.append(count)
 			
-			shape 				= [len(X), self.V]
+			shape 			= [len(X), self.V]
 			self.Review[i] 		= (np.array(indices), np.array(values), np.array(shape))
 			self.Review_I[i]	= (np.array(indices), np.full((len(values)), 1.0/np.sqrt(len(values))), np.array(shape))
 
 		
 			'Calculating Dense PairWise and Sparse TermtoTermR features'
-			X 				= self.trainQPerItem[i]
-			Y				= self.corpus.SPerItem[i]
+			X = self.trainQPerItem[i]
+			Y = self.corpus.SPerItem[i]
 			pairwise_temp 	= np.zeros((len(X), len(Y), self.PairwiseDim), dtype = np.float64)
-			indices 		= []
-			values 			= []
+			indices 	= []
+			values 		= []
 			
 			for j in range(len(X)):
 				for k in range(len(Y)):
 					pairwise_temp [j][k] 	= self.corpus.PairWiseFeature[(X[j], Y[k])]
-					qFeature 				= self.corpus.QAnswers[X[j]].qFeature
-					aFeature 				= self.corpus.Sentences[Y[k]].sFeature
+					qFeature 		= self.corpus.QAnswers[X[j]].qFeature
+					aFeature 		= self.corpus.Sentences[Y[k]].sFeature
 					
 					for v1, c1 in sorted(qFeature.items()):
 						if v1 in aFeature:
 							indices.append([j, k, v1])
 							values.append(c1 * aFeature[v1])
 							
-			shape       			= [len(X), len(Y), self.V]
-			self.Pairwise[i] 		= pairwise_temp
+			shape       		= [len(X), len(Y), self.V]
+			self.Pairwise[i] 	= pairwise_temp
 			self.TermtoTermR[i] 	= (np.array(indices), np.array(values), np.array(shape))
 
 			
@@ -360,44 +360,44 @@ class Model:
 
 		#print 'Doing for item %d'%(i)
 		
-		shape1 			= tf.shape(Pairwise)
-		shape2 			= tf.shape(Answer)
+		shape1 		= tf.shape(Pairwise)
+		shape2 		= tf.shape(Answer)
 
-		nq 				= shape1[0]
-		nr 				= shape1[1]
-		na 				= shape2[1]
+		nq 		= shape1[0]
+		nr 		= shape1[1]
+		na 		= shape2[1]
 
-		pairwise 		= tf.reshape(Pairwise, [-1, self.PairwiseDim])
-		pairwise 		= tf.reshape(tf.matmul(pairwise, self.theta), [nq, nr])
+		pairwise 	= tf.reshape(Pairwise, [-1, self.PairwiseDim])
+		pairwise 	= tf.reshape(tf.matmul(pairwise, self.theta), [nq, nr])
 
 		termTotermR 	= tf.sparse_reshape(TermtoTermR, [-1, self.V])
 		termTotermR 	= tf.reshape(tf.sparse_tensor_dense_matmul(termTotermR, self.RelvPar), [nq, nr])
 
-		QProj			= tf.sparse_tensor_dense_matmul(Question_I, self.A)
-		RProjR			= tf.sparse_tensor_dense_matmul(Review_I, self.B)
-		BilinearR		= tf.matmul(QProj, tf.transpose(RProjR))
+		QProj		= tf.sparse_tensor_dense_matmul(Question_I, self.A)
+		RProjR		= tf.sparse_tensor_dense_matmul(Review_I, self.B)
+		BilinearR	= tf.matmul(QProj, tf.transpose(RProjR))
 
-		Relevance		= tf.nn.softmax(pairwise + termTotermR + BilinearR)
+		Relevance	= tf.nn.softmax(pairwise + termTotermR + BilinearR)
 
 		termTotermP 	= tf.sparse_reshape(TermtoTermP, [-1, self.V])
 		termTotermP 	= tf.reshape(tf.sparse_tensor_dense_matmul(termTotermP, self.PredPar), [nq, na, nr])
 
-		AProj			= tf.sparse_tensor_dense_matmul(tf.sparse_reshape(Answer_I, [-1, self.V]), self.X)
-		RProjP			= tf.sparse_tensor_dense_matmul(Review_I, self.Y)
-		BilinearP		= tf.reshape(tf.matmul(AProj, tf.transpose(RProjP)), [nq, na, nr])
+		AProj		= tf.sparse_tensor_dense_matmul(tf.sparse_reshape(Answer_I, [-1, self.V]), self.X)
+		RProjP		= tf.sparse_tensor_dense_matmul(Review_I, self.Y)
+		BilinearP	= tf.reshape(tf.matmul(AProj, tf.transpose(RProjP)), [nq, na, nr])
 		
-		Prediction 		= BilinearP + termTotermP
+		Prediction 	= BilinearP + termTotermP
 		Prediction  	= tf.expand_dims(Prediction[:,0,:], 1) - Prediction
-		Prediction		= Prediction[:,1:,:]
-		Prediction		= tf.sigmoid(Prediction)
+		Prediction	= Prediction[:,1:,:]
+		Prediction	= tf.sigmoid(Prediction)
 		
-		MoE 			= tf.reduce_sum(tf.multiply(Prediction, tf.expand_dims(Relevance, axis = 1)), axis = 2)
+		MoE 		= tf.reduce_sum(tf.multiply(Prediction, tf.expand_dims(Relevance, axis = 1)), axis = 2)
 		accuracy_count  = tf.cast(tf.shape(tf.where(MoE > 0.5))[0], tf.float64)
-		count 			= nq * na 
+		count 		= nq * na 
 		
 		log_likelihood  = tf.reduce_sum(tf.log(MoE))
-		R1 				= tf.reduce_sum(tf.square(self.A)) + tf.reduce_sum(tf.square(self.B)) 
-		R2				= tf.reduce_sum(tf.square(self.X)) + tf.reduce_sum(tf.square(self.Y))
+		R1 		= tf.reduce_sum(tf.square(self.A)) + tf.reduce_sum(tf.square(self.B)) 
+		R2		= tf.reduce_sum(tf.square(self.X)) + tf.reduce_sum(tf.square(self.Y))
 		
 		log_likelihood  -= self.Lambda * (R1 + R2)
 
@@ -405,7 +405,7 @@ class Model:
 
 	def AUC(self, sess):
 
-		nq 			= len(self.validTestQ)
+		nq 		= len(self.validTestQ)
 		AUC 		= [0] * nq
 		AUC_valid 	= 0
 		AUC_test 	= 0
@@ -428,15 +428,15 @@ class Model:
 
 			pairwise, question, answer, review, termtoTermR, termtoTermP, question_I, answer_I, review_I 	= self.validTestM[q]
 
-			itemId 			= self.corpus.QAnswers[self.validTestQ[q]].itemId
+			itemId 		= self.corpus.QAnswers[self.validTestQ[q]].itemId
 			answer_list 	= self.validTestQ[na_start:na_end]
 			
 			if self.validTestQ[q] in answer_list:
 				answer_list.remove(self.validTestQ[q])
 			
 			answer_list 	= [self.validTestQ[q]] + answer_list
-			answer 			= self.create_sparse_one(answer_list = answer_list)
-			answer_I 		= (answer[0], np.full((answer[1].size), 1.0/np.sqrt(answer[1].size)), answer[2])
+			answer 		= self.create_sparse_one(answer_list = answer_list)
+			answer_I 	= (answer[0], np.full((answer[1].size), 1.0/np.sqrt(answer[1].size)), answer[2])
 			termtoTermP 	= self.create_sparse_two(itemId, answer_list = answer_list)
 			
 			feed_dict = {
@@ -452,8 +452,8 @@ class Model:
 						 }
 			
 			log_likelihood, MoE, Relevance 	= sess.run(self.loss, feed_dict = feed_dict)
-			correct 						= len(MoE[np.where(MoE > 0.5)])
-			accuracy 						= (correct * 1.0) / (len(answer_list) - 1)
+			correct 			= len(MoE[np.where(MoE > 0.5)])
+			accuracy 			= (correct * 1.0) / (len(answer_list) - 1)
 
 			if q < test:
 				AUC_valid += accuracy
@@ -469,10 +469,10 @@ class Model:
 				
 	def valid_test_perf(self, sess = None):
 
-		test 			= int(ceil(len(self.validTestQ) * self.valid_test))
+		test 		= int(ceil(len(self.validTestQ) * self.valid_test))
 		MostRelevant 	= [None] * len(self.validTestQ)
-		CorrectV 		= 0
-		CorrectT 		= 0
+		CorrectV 	= 0
+		CorrectT 	= 0
 
 		for i in range(len(self.validTestM)):
 			pairwise, question, answer, review, termtoTermR, termtoTermP, question_I, answer_I, review_I 	= self.validTestM[i]
@@ -516,7 +516,7 @@ class Model:
 			h 																= []
 			itemId 															= self.corpus.QAnswers[self.validTestQ[i]].itemId
 			
-			pairwise, question, answer, review, termtoTermR, termtoTermP, question_I, answer_I, review_I 	= self.validTestM[i]
+			pairwise, question, answer, review, termtoTermR, termtoTermP, question_I, answer_I, review_I = self.validTestM[i]
 			
 			feed_dict = {
 						 self.pairwise 		: pairwise,
@@ -598,10 +598,12 @@ class Model:
 	
 	def restore_model(self, file):
 
-		sess = tf.Session()
-		metafile = file+'.meta'
-		new_saver = tf.train.import_meta_graph(metafile)
+		sess 		= tf.Session()
+		metafile 	= file+'.meta'
+		new_saver 	= tf.train.import_meta_graph(metafile)
+		
 		new_saver.restore(sess, tf.train.latest_checkpoint('./'))
+		
 		all_vars = tf.get_collection('vars')
 		for v in all_vars:
 		    v_ = sess.run(v)
@@ -613,10 +615,10 @@ class Model:
 			self.theta   		= tf.Variable(tf.random_uniform([self.PairwiseDim, 1], dtype = tf.float64), name = 'theta' )
 			self.RelvPar 		= tf.Variable(tf.random_uniform([self.V, 1], dtype = tf.float64), name = 'RelvPar')
 			self.A       		= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'A')
-			self.B		 		= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'B')
+			self.B		 	= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'B')
 			self.PredPar 		= tf.Variable(tf.random_uniform([self.V, 1], dtype = tf.float64), name = 'PredPar')
 			self.X       		= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'X')
-			self.Y		 		= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'Y')
+			self.Y		 	= tf.Variable(tf.random_uniform([self.V, self.rankDim], dtype = tf.float64), name = 'Y')
 			
 			self.loss		= self.calc_log_loss(self.pairwise, self.question, self.answer, self.review, self.termTotermR, self.termTotermP, self.question_I, self.answer_I, self.review_I)
 			train_step 		= tf.train.AdamOptimizer(1e-2).minimize(self.loss[0])
@@ -627,7 +629,7 @@ class Model:
 			for i in range(self.numIter):
 				log_likelihood 	= 0.0
 				accuracy_count	= 0
-				count 			= 0
+				count 		= 0
 				
 				for j in range(self.Items):
 					feed_dict = {
@@ -645,9 +647,9 @@ class Model:
 					train, result 	=  sess.run([train_step, self.loss], feed_dict = feed_dict)
 					log_likelihood 	+= result[0]
 					accuracy_count 	+= len(result[1][np.where(result[1] > 0.5)])
-					count 			+= result[1].size 
+					count 		+= result[1].size 
 					
-				accuracy 				= (accuracy_count * 1.0) / count
+				accuracy 		= (accuracy_count * 1.0) / count
 				valid, test, topRanked 	= self.valid_test_perf(sess)
 				
 				print "For Training Epoch ", i 
